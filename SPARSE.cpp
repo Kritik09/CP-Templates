@@ -17,11 +17,11 @@ struct SPARSE{
         sparse.clear();
     }
     template<typename U>
-    void build(const vector<U>&a){
+    void build(const vector<U>&arr){
         for(int i=0;i<LOG;i++){
             for(int j=0;j+(1LL<<i)-1<N;j++){
                 if(i==0){
-                    sparse[i][j]=a[j];
+                    sparse[i][j]=arr[j];
                 }
                 else{
                     sparse[i][j]=FUN(sparse[i-1][j],sparse[i-1][j+(1LL<<(i-1))]);
@@ -29,7 +29,10 @@ struct SPARSE{
             }
         }
     }
-	T query(int l,int r){
+	T logQuery(int l,int r){
+        if(l>r){
+            return E;
+        }
 		T ANS=E;
 		for(int i=LOG;i>=0;i--){
 			int range=r-l+1;
@@ -41,11 +44,14 @@ struct SPARSE{
 		}
 		return ANS;
 	}
-    T queryO1(vector<vector<T>>&sparse,int l,int r){
+    T query(int l,int r){
+        if(l>r){
+            return E;
+        }
         int range=r-l+1;
         int jump=log2(range); 
         T ANS=FUN(sparse[jump][l],sparse[jump][r-(1LL<<jump)+1]);
         return ANS;
     }
 };
-// SPARSE<long long> st(n,25,[&](auto x,auto y){return gcd(x,y);},0);
+// SPARSE<long long> st(n,25,0,[&](auto x,auto y){return gcd(x,y);});

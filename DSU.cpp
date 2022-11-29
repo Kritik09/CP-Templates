@@ -19,11 +19,13 @@ struct DSU{
         parent.clear();
         rank.clear();
     }
-    T findSet(T node){
+    template<typename U>
+    T findSet(U node){
         if(parent[node]==node)return node;
         return parent[node]=findSet(parent[node]);
     }
-    bool unite(T nodeX,T nodeY){
+    template<typename U>
+    bool unite(U nodeX,U nodeY){
         nodeX=findSet(nodeX);
         nodeY=findSet(nodeY);
         if(nodeX==nodeY)return false;
@@ -32,7 +34,9 @@ struct DSU{
         parent[nodeY]=nodeX;
         return true;
     }
-    bool isSame(T nodeX,T nodeY){
+    template<typename U>
+    bool isSame(U nodeX,U nodeY){
         return findSet(nodeX)==findSet(nodeY);
     }
 };
+// DSU<int>dsu(n);

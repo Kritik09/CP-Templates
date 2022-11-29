@@ -2,15 +2,13 @@
 using namespace std;
 
 // KMP Algorithm
-void KMP(){
-    string a,b;cin>>a>>b;
-    int n=a.size(),m=b.size();
-
+int KMP(string &text,string &pattern){
+    int n=text.size(),m=pattern.size();
     vector<int>LPS(m);
     LPS[0]=0;
     int i=1,p=0;
     while(i<m){
-        if(b[i]==b[p]){
+        if(pattern[i]==pattern[p]){
             p++;
             LPS[i]=p;
             i++;
@@ -25,8 +23,9 @@ void KMP(){
     }
     int j=0;
     i=0;
+    vector<int>indexes;
     while(i<n){
-        if(a[i]==b[j]){
+        if(text[i]==pattern[j]){
             i++,j++;
         }
         else if(j==0){
@@ -36,10 +35,10 @@ void KMP(){
             j=LPS[j-1];
         }
         if(j==m){
-            cout << i-j << '\n';
-            break;
+            indexes.push_back(i-j);
         }
     }
+    return (int)indexes.size();
 }
 
 // Rabin Karp Better Approach
@@ -58,13 +57,9 @@ long long inverse(long long n,long long mod){
     }
     return ans;
 }
-void RB(){
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+int rabingKarp(string &text,string &pattern){
     long long p=31,mod=1e9+7;
-    string a,b;cin>>a>>b;
-    int n=a.size(),m=b.size();
+    int n=text.size(),m=pattern.size();
     int mx=max(n,m);
     long long pow[mx],inv[mx];
     pow[0]=1;
@@ -76,77 +71,19 @@ void RB(){
     }
     
     long long prefHash[n];
-    prefHash[0]=(a[0]-'a'+1);
+    prefHash[0]=(text[0]-'a'+1);
     for(int i=1;i<n;i++){
-        prefHash[i]=(prefHash[i-1]+((a[i]-'a'+1)*pow[i])%mod)%mod;
+        prefHash[i]=(prefHash[i-1]+((text[i]-'a'+1)*pow[i])%mod)%mod;
     }
     long long hash=0;
     for(int i=0;i<m;i++){
-        hash+=(b[i]-'a'+1)*pow[i];
+        hash+=(pattern[i]-'a'+1)*pow[i];
         hash%=mod;
     }
-    long long ans=0;
+    vector<int>indexes;
     for(int i=m-1;i<n;i++){
-        long long here=((prefHash[i]-(i-m>=0?prefHash[i-m]:0))*inv[i-m+1])%mod;
-        if(here<0)here+=mod;
-        if(hash==here)ans++;
+        long long here=((prefHash[i]+mod-(i-m>=0?prefHash[i-m]:0))%mod*inv[i-m+1])%mod;
+        if(hash==here)indexes.push_back(i-m+1);
     }
-    cout << ans << '\n';
-}
-
-
-// Rabin Karp String Matching Algo
-void solve(){
-    const long long mod=1e9+7;
-    string str;cin>>str;
-    string pat;cin>>pat;
-    int n=str.size();
-    int m=pat.size();
-    vector<long long>pow(m);
-    int p=31;
-    pow[0]=1;
-    for(int i=1;i<m;i++){
-        pow[i]=(pow[i-1]*p)%mod;
-    }
-    long long hash=0,curHash=0;
-    for(int i=0;i<m;i++){
-        hash=(hash + (pow[m-1-i]*(pat[i]-'a'+1))%mod)%mod;
-        curHash=(curHash + (pow[m-1-i]*(str[i]-'a'+1))%mod)%mod;
-    }
-    auto match=[&](int idx){
-        for(int i=0;i<m;i++,idx++){
-            if(pat[i]!=str[idx])return false;
-        }
-        return true;
-    };
-    vector<int>ans;
-    if(hash==curHash and match(0)){
-        ans.push_back(1);
-    }
-    for(int i=0,j=m;j<n;j++,i++){
-        curHash=(curHash - (pow[m-1]*(str[i]-'a'+1))%mod)%mod;
-        curHash=(curHash * p)%mod;
-        curHash=(curHash + (str[j]-'a'+1))%mod;
-        if(curHash<0){
-            curHash+=mod;
-        }
-        if(curHash==hash and match(i+1)){
-            ans.push_back(i+2);
-        }
-    }
-    if(ans.empty()){
-        cout << "Not Found\n";
-    }
-    else{
-        cout << ans.size() << '\n';
-        for(auto it:ans){
-            cout << it << ' ';
-        }
-        cout << '\n';
-    }
-}
-
-int32_t main(){
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
+    return (int)indexes.size();
 }

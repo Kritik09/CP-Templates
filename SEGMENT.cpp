@@ -78,8 +78,4 @@ struct segment_tree {
         return f(x, y);
     }
 };
-// segment_tree<long long> st(arr, siz, returning_on_nonOverlap(LLONG_MIN), [&](auto x, auto y) { return max(x, y); });
-int main(){
-    int n;
-    segment_tree<int> st=segment_tree<int>(n,0,[&](auto x,auto y){return max(x,y);});
-}
+// segment_tree<long long> st(n,INT_MAX,[&](auto x,auto y){return min(x,y);});

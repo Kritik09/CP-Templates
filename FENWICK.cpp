@@ -6,6 +6,7 @@ struct FENWICK{
     int N,M;
     vector<T>fenwick;
     vector<vector<T>>fenwick2d;
+    FENWICK(){}
     FENWICK(int _N){
         N=_N;
         fenwick.assign(N+10,0);
@@ -14,7 +15,6 @@ struct FENWICK{
         N=_N,M=_M;
         fenwick2d.assign(N+10,vector<T>(M+10,0));
     }
-
     template<typename U>
     void update(int index,U value){
         while(index<=N){
@@ -60,3 +60,4 @@ struct FENWICK{
         return sum(x2,y2)-sum(x1-1,y2)-sum(x2,y1-1)+sum(x1-1,y1-1);
     }
 };
+// FENWICK<long long>ft(n);
