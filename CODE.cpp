@@ -29,8 +29,8 @@ using namespace __gnu_pbds;
 #define pb push_back
 #define ppb pop_back
 #define nline cout << "\n";
-#define yes return cout << "YES\n",void();
-#define no return cout << "NO\n",void();
+#define yes return cout << "Yes\n",void();
+#define no return cout << "No\n",void();
 #define endl "\n"
 #define all(x) x.begin(),x.end()
 #define sz(x) (int)(x).size()
@@ -47,6 +47,7 @@ void _print(long t) {cerr << t;}
 void _print(long long t) {cerr << t;}
 void _print(float t) {cerr << t;}
 void _print(string t) {cerr << t;}
+void _print(unsigned t) { cerr << t; }
 template <typename H, typename... T> void DBG(H h, T... t);
 template <typename T> void _print(vector <T> v);
 template <typename T, typename V> void _print(pair <T, V> p);
@@ -81,14 +82,16 @@ template <typename T> void _print(ordered_multiset<T> &s) {cerr << "[";for(auto 
 void DBG(){cerr << ")" << endl;}
 template<typename H, typename... T>void DBG(H h, T... t) { _print(h); if(sizeof...(t))cerr << ", ";DBG(t...);}
 
-//<---------------------------------------IO TEMPLATE---------------------------------------------------------------->
-template<typename T> istream& operator>>(istream& CIN,vector<T>&a){ for(auto &it:a){ CIN>>it; } return CIN; }
-template<typename T> ostream& operator<<(ostream& COUT,vector<T>&a){ for(auto &it:a){ COUT << it << ' '; } return COUT; }
+//<---------------------------------------FAST TEMPLATE---------------------------------------------------------------->
+template<typename T> istream& operator>>(istream& in,vector<T>&a){ for(auto &it:a){ in>>it; } return in; }
+template<typename T> ostream& operator<<(ostream& out,vector<T>&a){ for(auto &it:a){ out << it << ' '; } return out; }
+template<typename T> bool umin(T& a, const T& b) { return b<a?a=b, 1:0; }
+template<typename T> bool umax(T& a, const T& b) { return a<b?a=b, 1:0; } 
 
 //<---------------------------------------Code---------------------------------------------------------------->
 const int N=2e5+10;
-const int mod=1e9+7;
-// const int mod=998244353;
+const long long mod=1e9+7;
+// const long long mod=998244353;
 /*
 
 */
@@ -103,8 +106,8 @@ signed main(){
     int ttc=1;
     cin>>ttc;
     for(int i=1;i<=ttc;i++){
-    // cout << "Case #" << i << ": ";
-    solve(i);
+        // cout << "Case #" << i << ": ";
+        solve(i);
     }
     #ifdef Kritik09
     clock_t endTime = clock();
