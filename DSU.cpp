@@ -8,16 +8,14 @@ struct DSU{
     DSU(){}
     DSU(int _N){
         N=_N;
+        parent.clear();
+        rank.clear();
         parent.assign(N+10,0);
         rank.assign(N+10,0);
         for(T i=0;i<=N;i++){
             parent[i]=i;
             rank[i]=1;
         }
-    }
-    ~DSU(){
-        parent.clear();
-        rank.clear();
     }
     template<typename U>
     T findSet(U node){

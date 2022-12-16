@@ -18,6 +18,9 @@ void _print(long t) { cerr << t; }
 void _print(long long t) { cerr << t; }
 void _print(float t) { cerr << t; }
 void _print(string t) { cerr << t; }
+void _print(unsigned t) { cerr << t; }
+template <size_t S> 
+void _print(bitset<S> t) {cerr << t;}
 template <typename H, typename... T>
 void DBG(H h, T... t);
 template <typename T>
@@ -194,18 +197,18 @@ void _print(deque<T> v)
 template <typename T>
 void _print(ordered_set<T> &s)
 {
-    cerr << "[";
+    cerr << "[ ";
     for (auto &it : s)
         cerr << it << ' ';
-    cerr << endl;
+    cerr << "]";
 }
 template <typename T>
 void _print(ordered_multiset<T> &s)
 {
-    cerr << "[";
+    cerr << "[ ";
     for (auto &it : s)
         cerr << it << ' ';
-    cerr << endl;
+    cerr << "]";
 }
 void DBG() { cerr << ")" << endl; }
 template <typename H, typename... T>

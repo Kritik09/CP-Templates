@@ -1,6 +1,6 @@
 /* I tried so hard and got so far
- but in the end it doesn't even matter
- I had to fall, to loose it all */ 
+   but in the end it doesn't even matter
+   I had to fall, to loose it all */ 
 
 //Author : Kritik09
 
@@ -23,7 +23,6 @@ using namespace __gnu_pbds;
 #define vll vector<long long>
 #define pi pair<int,int>
 #define pll pair<ll,ll>
-#define PIE 3.141592653589793238462
 #define ff first
 #define ss second
 #define pb push_back
@@ -48,6 +47,7 @@ void _print(long long t) {cerr << t;}
 void _print(float t) {cerr << t;}
 void _print(string t) {cerr << t;}
 void _print(unsigned t) { cerr << t; }
+template <size_t S> void _print(bitset<S> t) {cerr << t;}
 template <typename H, typename... T> void DBG(H h, T... t);
 template <typename T> void _print(vector <T> v);
 template <typename T, typename V> void _print(pair <T, V> p);
@@ -77,8 +77,8 @@ template <typename T, typename V> void _print(unordered_map <T, V> v) {cerr << "
 template <typename T, typename V> void _print(multimap <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <typename T, typename V, typename G> void _print(multimap <T, V, greater<G>> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <typename T> void _print(deque <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <typename T> void _print(ordered_set<T> &s) {cerr << "[";for(auto &it:s) cerr << it << ' ';cerr<<endl;}
-template <typename T> void _print(ordered_multiset<T> &s) {cerr << "[";for(auto &it:s) cerr << it << ' ';cerr<<endl;}
+template <typename T> void _print(ordered_set<T> &s) {cerr << "[ ";for(auto &it:s) cerr << it << ' ';cerr<<"]";}
+template <typename T> void _print(ordered_multiset<T> &s) {cerr << "[ ";for(auto &it:s) cerr << it << ' ';cerr<<"]";}
 void DBG(){cerr << ")" << endl;}
 template<typename H, typename... T>void DBG(H h, T... t) { _print(h); if(sizeof...(t))cerr << ", ";DBG(t...);}
 
@@ -89,19 +89,25 @@ template<typename T> bool umin(T& a, const T& b) { return b<a?a=b, 1:0; }
 template<typename T> bool umax(T& a, const T& b) { return a<b?a=b, 1:0; } 
 
 //<---------------------------------------Code---------------------------------------------------------------->
+
+/* 10% luck, 20% skill
+   15% concentrated power of will
+   5% pleasure, 50% percent pain
+   and a 100% reason to remember the name */
+
 const int N=2e5+10;
 const long long mod=1e9+7;
 // const long long mod=998244353;
-/*
+const long double PIE=3.141592653589793238462;
 
-*/
 void solve(int ttc){
-    //Nothing is Permanent
     
 }
 
 signed main(){
+    #ifdef Kritik09
     clock_t startTime = clock();
+    #endif
     fastio
     int ttc=1;
     cin>>ttc;

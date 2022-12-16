@@ -13,9 +13,6 @@ struct SPARSE{
         N=_N,E=_E,FUN=_FUN,LOG=_LOG;
         sparse.assign(LOG,vector<T>(N,E));
     }
-    ~SPARSE(){
-        sparse.clear();
-    }
     template<typename U>
     void build(const vector<U>&arr){
         for(int i=0;i<LOG;i++){

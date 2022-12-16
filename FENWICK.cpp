@@ -7,25 +7,27 @@ struct FENWICK{
     vector<T>fenwick;
     vector<vector<T>>fenwick2d;
     FENWICK(){}
-    FENWICK(int _N){
-        N=_N;
+    FENWICK(int _N,int offset=0){
+        N=_N+offset;
         fenwick.assign(N+10,0);
     }
-    FENWICK(int _N,int _M){
-        N=_N,M=_M;
+    FENWICK(int _N,int _M,int xoffset=0,int yoffset=0){
+        N=_N+xoffset,M=_M+yoffset;
         fenwick2d.assign(N+10,vector<T>(M+10,0));
     }
     template<typename U>
-    void update(int index,U value){
+    void update(int index,U value,int offset=0){
+        index+=offset;
         while(index<=N){
             fenwick[index]+=value;
             index+=index&(-index);
         }
     }
     template<typename U>
-    void update(int index,int jndex,U value){
+    void update(int index,int jndex,U value,int xoffset=0,int yoffset=0){
+        index+=xoffset;
         while(index<=N){
-            int tempJndex=jndex;
+            int tempJndex=jndex+yoffset;
             while(tempJndex<=M){
                 fenwick2d[index][tempJndex]+=value;
                 tempJndex+=tempJndex&(-tempJndex);
@@ -33,7 +35,8 @@ struct FENWICK{
             index+=index&(-index);
         }
     }
-    T sum(int index){
+    T sum(int index,int offset=0){
+        index+=offset;
         T SUM=0;
         while(index>0){
             SUM+=fenwick[index];
@@ -41,10 +44,11 @@ struct FENWICK{
         }
         return SUM;
     }
-    T sum(int index,int jndex){
+    T sum(int index,int jndex,int xoffset=0,int yoffset=0){
+        index+=xoffset;
         T SUM=0;
         while(index>0){
-            int tempJndex=tempJndex;
+            int tempJndex=tempJndex+yoffset;
             while(tempJndex>0){
                 SUM+=fenwick2d[index][tempJndex];
                 tempJndex-=tempJndex&(-tempJndex);

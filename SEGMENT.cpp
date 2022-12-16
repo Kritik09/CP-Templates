@@ -15,11 +15,6 @@ struct segment_tree {
  
     segment_tree(int n, T e, F f): n(n), t(4 * n), lazy(4 * n), e(e), f(f) {}
 
-    ~segment_tree(){
-        t.clear();
-        lazy.clear();
-    }
-
     template<typename U>
     void build(const U &arr, int i, int l, int r) {
         if (l == r) {
