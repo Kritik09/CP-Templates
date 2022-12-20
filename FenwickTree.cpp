@@ -2,16 +2,16 @@
 using namespace std;
 
 template<typename T>
-struct FENWICK{
+struct FenwickTree{
     int N,M;
     vector<T>fenwick;
     vector<vector<T>>fenwick2d;
-    FENWICK(){}
-    FENWICK(int _N,int offset=0){
+    FenwickTree(){}
+    FenwickTree(int _N,int offset=0){
         N=_N+offset;
         fenwick.assign(N+10,0);
     }
-    FENWICK(int _N,int _M,int xoffset=0,int yoffset=0){
+    FenwickTree(int _N,int _M,int xoffset=0,int yoffset=0){
         N=_N+xoffset,M=_M+yoffset;
         fenwick2d.assign(N+10,vector<T>(M+10,0));
     }
@@ -64,4 +64,4 @@ struct FENWICK{
         return sum(x2,y2)-sum(x1-1,y2)-sum(x2,y1-1)+sum(x1-1,y1-1);
     }
 };
-// FENWICK<long long>ft(n);
+// FenwickTree<long long>ft(n);

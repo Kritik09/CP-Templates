@@ -2,14 +2,14 @@
 using namespace std;
 
 template<typename T>
-struct SPARSE{
+struct SparseTable{
     vector<vector<T>>sparse;
 	using F=function<T(const T&,const T&)>;
     int N,LOG;
 	F FUN;
     T E;
-    SPARSE(){};
-    SPARSE(int _N,int _LOG,T _E,F _FUN){
+    SparseTable(){};
+    SparseTable(int _N,int _LOG,T _E,F _FUN){
         N=_N,E=_E,FUN=_FUN,LOG=_LOG;
         sparse.assign(LOG,vector<T>(N,E));
     }
@@ -51,4 +51,4 @@ struct SPARSE{
         return ANS;
     }
 };
-// SPARSE<long long> st(n,25,0,[&](auto x,auto y){return gcd(x,y);});
+// SparseTable<long long> st(n,25,0,[&](auto x,auto y){return gcd(x,y);});

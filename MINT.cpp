@@ -88,4 +88,4 @@ struct mint {
         return in;
     }
 };
-using MINT=mint<long long,(long long)1e9+7>;
+using Mint=mint<long long,(long long)1e9+7>;

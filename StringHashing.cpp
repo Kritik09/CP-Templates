@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct stringHashing{
+struct StringHashing{
 
     // KMP Algorithm
     int KMP(string &text,string &pattern){
@@ -90,4 +90,4 @@ struct stringHashing{
         return (int)indexes.size();
     }
 };
-stringHashing str=stringHashing();
+StringHashing str=StringHashing();

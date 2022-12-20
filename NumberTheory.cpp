@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct MATH{
+struct NumberTheory{
 
     // Seive of Eratosthenes
     vector<int>isPrime;
@@ -168,4 +168,4 @@ struct MATH{
         return (a*b)/GCD(a,b);
     }
 };
-MATH mathObj=MATH();
+NumberTheory obj=NumberTheory();

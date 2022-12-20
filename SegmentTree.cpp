@@ -2,7 +2,7 @@
 using namespace std;
 
 template<typename T>
-struct segment_tree {
+struct SegmentTree{
     using F = std::function<T(const T&, const T&)>;
  
     int n;
@@ -11,9 +11,9 @@ struct segment_tree {
     T e;
     F f;
  
-    segment_tree() : n(), e(), f() {}
+    SegmentTree() : n(), e(), f() {}
  
-    segment_tree(int n, T e, F f): n(n), t(4 * n), lazy(4 * n), e(e), f(f) {}
+    SegmentTree(int n, T e, F f): n(n), t(4 * n), lazy(4 * n), e(e), f(f) {}
 
     template<typename U>
     void build(const U &arr, int i, int l, int r) {
@@ -73,4 +73,4 @@ struct segment_tree {
         return f(x, y);
     }
 };
-// segment_tree<long long> st(n,INT_MAX,[&](auto x,auto y){return min(x,y);});
+// SegmentTree<long long> st(n,INT_MAX,[&](auto x,auto y){return min(x,y);});
